@@ -1,0 +1,64 @@
+--- openapi-orig.yaml	2025-05-05 00:13:31
++++ openapi.yaml	2025-05-05 00:41:05
+@@ -1158,7 +1158,7 @@
+             - playable
+             - preview
+             - blocked
+-        default: playable,preview
++          default: playable,preview
+       description: |
+         Filters content by level of access the user (logged in or anonymous) has to the track. The result list will include only tracks with the specified access. Include all options if you'd like to see all possible tracks. See `Track#access` schema for more details.
+       style: form
+@@ -1174,7 +1174,7 @@
+             - playable
+             - preview
+             - blocked
+-        default: playable,preview,blocked
++          default: playable,preview,blocked
+       description: |
+         Filters content by level of access the user (logged in or anonymous) has to the track. The result list will include only tracks with the specified access. Include all options if you'd like to see all possible tracks. See `Track#access` schema for more details.
+       style: form
+@@ -1705,10 +1705,13 @@
+         subscriptions:
+           description: a list subscriptions associated with the user
+           deprecated: true
++          type: array
+           items:
+-            type: array
+-            anyOf:
+-              - description: subscription
++            type: object
++            properties:
++              anyOf:
++                type: object
++                description: subscription
+                 properties:
+                   product:
+                     description: product
+@@ -1723,7 +1726,6 @@
+                   recurring:
+                     description: if the subscription is recurring or not
+                     type: boolean
+-                type: object
+     Me:
+       type: object
+       description: SoundCloud Me object
+@@ -1831,8 +1833,8 @@
+           type: integer
+         subscriptions:
+           description: a list subscriptions associated with the user
++          type: array
+           items:
+-            type: array
+             anyOf:
+               - description: subscription
+                 properties:
+@@ -2171,7 +2173,7 @@
+       type: object
+       description: User's activities.
+       properties:
+-        collection:
++        items:
+           type: array
+           items:
+             type: object
