@@ -150,15 +150,18 @@ pub async fn tracks_get(configuration: &configuration::Configuration, q: Option<
         req_builder = req_builder.query(&[("tags", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_bpm {
-        let params = crate::apis::parse_deep_object("bpm", param_value);
+        let value = serde_json::to_value(param_value).unwrap();
+        let params = crate::apis::parse_deep_object("bpm", &value);
         req_builder = req_builder.query(&params);
     }
     if let Some(ref param_value) = p_duration {
-        let params = crate::apis::parse_deep_object("duration", param_value);
+        let value = serde_json::to_value(param_value).unwrap();
+        let params = crate::apis::parse_deep_object("duration", &value);
         req_builder = req_builder.query(&params);
     }
     if let Some(ref param_value) = p_created_at {
-        let params = crate::apis::parse_deep_object("created_at", param_value);
+        let value = serde_json::to_value(param_value).unwrap();
+        let params = crate::apis::parse_deep_object("created_at", &value);
         req_builder = req_builder.query(&params);
     }
     if let Some(ref param_value) = p_access {
